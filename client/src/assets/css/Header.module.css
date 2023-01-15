@@ -2,38 +2,40 @@ body{
     background-color: #000;
 }
 
-  .header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #000;
-    padding: 20px;
+    padding: 20px 0;
     width: 100%;
     color:#FFFFFF;
   }
-  .company-container{
+  .companyContainer{
     display: flex;
     align-items: center;
-    margin-left:10px;
+    margin: 0 20px;
+    /* margin-left:20px; */
   }
   
-  .company-logo {
+  .companyLogo {
     width: 30px;
     height: 30px;
   }
   
-  .company-name {
+  .companyNamee {
     margin: 3px;
-    font-size: 20px;
+    font-size: 24px;
   }
   
-  .signup-container {
+  .signupContainer {
     display: flex;
+    margin: 0 20px;
     align-items: center;
-    margin-right: 10px;
+    
 }
 
-.signup-button {
+.signupButton {
     text-decoration: none;
     background-color: white;
     color: #022B28;

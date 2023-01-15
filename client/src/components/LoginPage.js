@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../assets/css/Login.css';
+import React, { useState,useEffect } from 'react';
+import classes from '../assets/css/Login.module.css';
 import Header from './Header';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
@@ -19,18 +19,17 @@ const LoginPage = () => {
         // Handle form submission here
         
         const { username, password } = e.target.elements;
-        axios.post("/filterpixel/login", {
+        axios.post("http://localhost:3001/filterpixel/login", {
             username: username.value,
             password: password.value
         }).then((response) => {
-            console.log(response)
-            if (response.data.status === "success") {
-                console.log("login successful")
-                navigate("/home");
-            }   
+            // console.log(response)
+            console.log("login successful")
+            navigate("/home");
+              
         }).catch((error) => {
-            console.log(error)
-
+            alert("Login failed " + error)
+            console.log(error.message)
         })
     };
 
@@ -42,18 +41,19 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="page-container">
-            <Header />
-            <div className="form-container">
-                <form onSubmit={handleSubmit} className="form">
+        <div className={classes.pageContainer}>
+            <Header isSignup={true}/>
+            <div className={classes.formContainer}>
+                <form onSubmit={handleSubmit} className={classes.form}>
                     <div>
-                        <button type="button" className="google-button" onClick={handleGoogleLogin}>
-                            <img src={googleLogo} alt="Google Logo" className="google-logo" />
+                        <button type="button" className={classes.googleButton} onClick={handleGoogleLogin}>
+                        <i className="fa fa-google"></i>
                             Login with Google
                         </button>
                     </div>
-                    <div className="divider">
-                        <span className="divider-text">OR</span>
+                    <div className={classes.divider}>
+                         OR 
+    
                     </div>
                     <div>
 
@@ -63,7 +63,7 @@ const LoginPage = () => {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             placeholder="Username"
-                            className="input"
+                            className={classes.input}
                         />
                     </div>
                     <div>
@@ -74,11 +74,11 @@ const LoginPage = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
-                            className="input"
+                            className={classes.input}
                         />
                     </div>
-                    <button type="submit" className="button">
-                        Login
+                    <button type="submit" className={classes.button}>
+                        Submit
                     </button>
                 </form>
             </div>

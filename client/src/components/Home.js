@@ -1,43 +1,44 @@
 import React, { useEffect,useState } from "react";
 import Header from "./Header";
-import "../assets/css/Home.css";
-// import app from '../services/firebase.js';
+import classes from "../assets/css/Home.module.css";
+import axios from "axios";
 
 const Home = () => {
 
+    const [data,setData]=useState("");
     
-  
+    //now here fetches data
+    useEffect(()=>{
+        axios.get("http://localhost:3001/filterpixel/bucketData").
+        then((result) => {
+            console.log(result)
+            return result.json();
+            // console.log(JSON.parse(response.data));
+            // // setData(response.data)
+        })
+        .then((data) => {
+            console.log(data);
+            // setData(data);
+        })
+        .catch((error) => {
+            console.log(error.message)
+        })
+    }
+,[])
     
-    //now we first check if the user is logged in by checking if firebase.auth().currentUser is defined. If it's not, we use the Redirect component to redirect the user to the login page. If it is defined, it means that the user is logged in and we can render the home page.
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    // useEffect(() => {
-    //     app.auth().onAuthStateChanged(user => {
-    //         if(user) {
-    //             setIsLoggedIn(true);
-    //         } else {
-    //             setIsLoggedIn(false);
-    //         }
-    //     });
-    // }, []);
-
-    // if (!isLoggedIn) {
-    //     // return <Redirect to="/login" />;
-    //     window.location.href = "/login";
-    // }
 
     return(
-        <div>
+        
+            <div className={classes.homeContainer}>
             <Header/>
-            <div className="home-container">
-                <div className="bucket-content">
-                    <h1 className="bucket-title">S3</h1>
+                <div className={classes.bucketContent}>
+                    <h1 className={classes.bucketTitle}>S3</h1>
                 </div>
-                <div className="drive-content">
-                    <h1 className="drive-title">Google Drive</h1>
+                <div className={classes.driveContent}>
+                    <h1 className={classes.driveTitle}>Google Drive</h1>
                 </div>
             </div>
-        </div>
+        
     )
 }
 

@@ -1,22 +1,21 @@
 import React from "react";
-import '../assets/css/Header.css';
+import classes from '../assets/css/Header.module.css';
 import {Link} from "react-router-dom";
 
 
-const Header = () => {
+const Header = (props) => {
     const companyLogo="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/ebysgk4unsjjfuq1hhsx"
     return(
-    <header className="header">
-        <div className="company-container">
-        <img src={companyLogo} alt="Company Logo" className="company-logo" />
-        <h1 className="company-name">FilterPixel</h1>
+    <header className={classes.header}>
+        <div className={classes.companyContainer}>
+        <img src={companyLogo} alt="Company Logo" className={classes.companyLogo} />
+        <h1 className={classes.companyNamee}>FilterPixel</h1>
 
         </div>
-        <div className="signup-button">
-          {/* <a href="#" className="signup-button"> */}
-            
-            <Link to="/register">Sign Up</Link>
-            {/* </a> */}
+        <div className={classes.signupContainer}>
+           {props.isSignup ? <Link to="/register" className={classes.signupButton}>Sign Up</Link> :
+           <Link to="/" className={classes.signupButton}>Sign in</Link>
+    }
         </div>
       </header>
     )
