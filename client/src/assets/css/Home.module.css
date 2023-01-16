@@ -9,4 +9,16 @@ body{
     min-height: 100vh;
     color:white;
 }
+.imageGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .imageGallery img {
+    width: 30%; /* adjust as needed */
+    height: auto;
+    margin-bottom: 16px; /* adjust as needed */
+  }
+  
 

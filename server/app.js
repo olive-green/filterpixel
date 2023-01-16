@@ -88,7 +88,7 @@ app.get("/filterpixel/bucketData",async (req,res)=>{
     try {
         const data = await s3Client.send(new ListObjectsCommand(bucketParams));
         console.log("Success", data);
-        res.status(200).json({data: JSON.stringify(data)});
+        res.status(200).json({data});
     } catch (err) {
         console.log("Error", err);
     }
